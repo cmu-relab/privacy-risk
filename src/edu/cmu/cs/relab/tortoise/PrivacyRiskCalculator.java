@@ -28,7 +28,7 @@ public class PrivacyRiskCalculator {
 		// read the table from a URL, could be a file
 	}
 	
-	public ArrayList<PrivacyRiskScore> privacyRiskScore(ArrayList<InformationType> types, ArrayList<DemographicFactor> factors) {
+	public ArrayList<PrivacyRiskScore> score(PrivacyRiskTarget target) {
 		ArrayList<PrivacyRiskScore> scores = new ArrayList<PrivacyRiskScore>();
 		
 		// version 1.0: Compute score per information type by all factors

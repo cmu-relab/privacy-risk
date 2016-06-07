@@ -1,6 +1,5 @@
 package edu.cmu.cs.relab.tortoise;
 
-import java.util.ArrayList;
 
 /**
  * Describes a privacy risk score for a collection of information types.
@@ -12,9 +11,9 @@ import java.util.ArrayList;
 public class PrivacyRiskScore {
 	
 	/**
-	 * The list of scored information types
+	 * The list of scored information types and demographic factors
 	 */
-	private final ArrayList<InformationType> types = new ArrayList<InformationType>();
+	private final PrivacyRiskTarget target;
 	
 	/**
 	 * The privacy risk score for these information types
@@ -26,8 +25,8 @@ public class PrivacyRiskScore {
 	 * @param types the scored information types
 	 * @param score the privacy risk score
 	 */
-	public PrivacyRiskScore(ArrayList<InformationType> types, double score) {
-		this.types.addAll(types);
+	public PrivacyRiskScore(PrivacyRiskTarget target, double score) {
+		this.target = target;
 		this.score = score;
 	}
 	
@@ -36,8 +35,8 @@ public class PrivacyRiskScore {
 	 * @return the scored information types
 	 */
 	
-	public InformationType[] getTypes() {
-		return types.toArray(new InformationType[types.size()]);
+	public PrivacyRiskTarget getTarget() {
+		return target;
 	}
 	
 	/**
