@@ -23,14 +23,14 @@ public class PrivacyCalculatorTester {
 
 		PrivacyRiskTarget target=PrivacyRiskCalculator.setTable();
 		ArrayList<PrivacyRiskScore> scores=PrivacyRiskCalculator.score(target);
+		
 		FileWriter out=new FileWriter(new File("data/scores.csv"));
 		out.write("Information Type,Risk Level,Harm,Score\n");
 		for(PrivacyRiskScore score:scores){
 			out.write(score.infotype.name+","+score.risk.name+","+score.harm.name
-					+","+score.interaction.toString()+","+score.score+"\n");
+					+","+score.score+"\n");
 		}
 		out.close();
-		System.err.println("end");
 		
 	}
 

@@ -27,8 +27,10 @@ public class PrivacyRiskCalculator {
 	}
 	
 	/*
-	 * This function populates the Arraylists for the class PrivacyTarget, 
-	 * by reading the survey data estimates from a csv file.
+	 * This function populates the Arraylists of the independent variables and the 
+	 *  interaction between information types and risk levels
+	 *  for the class PrivacyTarget, by reading the survey data estimates from two .csv file 
+	 *  - one for the individual estimates and the other for interactions.
 	 * 
 	*/
 	public static PrivacyRiskTarget setTable() throws IOException {
@@ -70,7 +72,7 @@ public class PrivacyRiskCalculator {
 		for(PrivacyHarm r:pt.harms)
 			System.err.println(r);
 			
-		//Populate the interactions, only if pvalue<0.05
+		//Populate the interactions, only if pvalue<=0.05
 		for(int row=0; row<interactions.size(); row++){
 			String infotype=interactions.getField("infotype", row);
 			String risk = interactions.getField("risklevel", row);
@@ -81,7 +83,6 @@ public class PrivacyRiskCalculator {
 			InformationType info=new InformationType("empty",0);
 			RiskLevel r=new RiskLevel("empty",0);
 			
-			if(pvalue<=0.05){
 				for(InformationType i:pt.types){
 					if(i.name.equals(infotype)){
 						info=new InformationType(i.name,i.value);
@@ -93,14 +94,14 @@ public class PrivacyRiskCalculator {
 						r=new RiskLevel(risks.name,risks.value);
 					}		
 				}
-				interaction=interactionvalue;
-			}
 			
-			else{
-				interaction=0;
-			}
+				if(pvalue<=0.05)
+					interaction=interactionvalue;
+			
+				else
+					interaction=0;
+			
 				Interaction i=new Interaction(info,r,interaction);
-				//System.err.println(i);
 				pt.add(i);
 		}	
 		
