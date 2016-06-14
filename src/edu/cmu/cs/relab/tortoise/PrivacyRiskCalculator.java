@@ -31,6 +31,8 @@ public class PrivacyRiskCalculator {
 	 *  interaction between information types and risk levels
 	 *  for the class PrivacyTarget, by reading the survey data estimates from two .csv file 
 	 *  - one for the individual estimates and the other for interactions.
+	 *  
+	 *  Returns a PrivacyRiskTarget object with all the Arraylists set to their estimate values. 
 	 * 
 	*/
 	public static PrivacyRiskTarget setTable() throws IOException {
@@ -72,7 +74,7 @@ public class PrivacyRiskCalculator {
 		for(PrivacyHarm r:pt.harms)
 			System.err.println(r);
 			
-		//Populate the interactions, only if pvalue<=0.05
+		//Populate the interactions, only if p-value<=0.05
 		for(int row=0; row<interactions.size(); row++){
 			String infotype=interactions.getField("infotype", row);
 			String risk = interactions.getField("risklevel", row);
@@ -108,14 +110,22 @@ public class PrivacyRiskCalculator {
 		return pt;
 	}
 	
+	
+	/*
+	 * This function computes the WTS scores for all the combinations of harms, information types 
+	 * and risk levels. The input file is a PrivacyRiskTarget object that contains all the values for the estimates. 
+	 * It stores the WTS score for each combination as a PrivacyRiskScore object. 
+	 * And returns an Arraylist with all the scores, 
+	 * for all possible combinations of the independent variables. 
+	 * 
+	 */
 	public static ArrayList<PrivacyRiskScore> score(PrivacyRiskTarget target) {
 		ArrayList<PrivacyRiskScore> scores = new ArrayList<PrivacyRiskScore>();
 		
-		// version 1.0: Compute score per information type by all factors
+		// version 1.0: Computes score for all the combinations of the independent variables - harm, risk and infotype.
 		for(RiskLevel risk:target.risklevels){
 			for(PrivacyHarm harm:target.harms){
 				for(InformationType info:target.types){
-					
 					//find the interaction value
 					Interaction interaction=new Interaction(info,risk,0);
 					for(Interaction i:target.interactions){
@@ -124,7 +134,7 @@ public class PrivacyRiskCalculator {
 							continue;
 						}
 					}
-					//calculate score
+					//calculate score using regression equation
 					double s=target.intercept+risk.value+info.value+harm.value+interaction.value;
 					PrivacyRiskScore sc=new PrivacyRiskScore(target,info,harm,risk,interaction,s);
 					scores.add(sc);
