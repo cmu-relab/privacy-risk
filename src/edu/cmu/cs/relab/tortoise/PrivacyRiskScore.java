@@ -13,20 +13,25 @@ public class PrivacyRiskScore {
 	/**
 	 * The list of scored information types and demographic factors
 	 */
-	private final PrivacyRiskTarget target;
-	
-	/**
-	 * The privacy risk score for these information types
-	 */
-	private final double score;
+	public  PrivacyRiskTarget target;
+	public  InformationType infotype;
+	public  RiskLevel risk;
+	public  PrivacyHarm harm;
+	public  Interaction interaction;
+	public double score;
+
 	
 	/**
 	 * Creates a new mapping between a privacy risk score and scored information types
 	 * @param types the scored information types
 	 * @param score the privacy risk score
 	 */
-	public PrivacyRiskScore(PrivacyRiskTarget target, double score) {
+	public PrivacyRiskScore(PrivacyRiskTarget target, InformationType info, PrivacyHarm harm, RiskLevel risk, Interaction interaction, double score) {
 		this.target = target;
+		this.infotype=info;
+		this.risk=risk;
+		this.harm=harm;
+		this.interaction=interaction;
 		this.score = score;
 	}
 	
