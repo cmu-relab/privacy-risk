@@ -80,8 +80,14 @@ public class PrivacyRiskEstimateCalculator extends PrivacyRiskCalculator {
 		// Populate the interactions, only if p <= 0.05
 		for(int row = 0; row < interactions.size(); row++){
 			double p = Double.parseDouble(interactions.get(row, "pvalue"));
+			double estInteract=0.0;
+			
 			if(p > pvalue) {
-				continue;
+				estInteract=0;
+			}
+			
+			else{
+				estInteract = Double.parseDouble(interactions.get(row, "estimate"));
 			}
 			
 			// for p <= pvalue, create score for this interaction
@@ -89,7 +95,6 @@ public class PrivacyRiskEstimateCalculator extends PrivacyRiskCalculator {
 			String risk = interactions.get(row, "risklevel");
 			
 			// read and lookup relevant estimates
-			double estInteract = Double.parseDouble(interactions.get(row, "estimate"));
 			double estType = types.get(type);
 			double estRisk = risks.get(risk);
 			
