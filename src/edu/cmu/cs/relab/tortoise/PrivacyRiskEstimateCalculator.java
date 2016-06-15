@@ -83,14 +83,14 @@ public class PrivacyRiskEstimateCalculator extends PrivacyRiskCalculator {
 			double estInteract=0.0;
 			
 			if(p > pvalue) {
-				estInteract=0;
+				estInteract=0.0;
 			}
 			
 			else{
 				estInteract = Double.parseDouble(interactions.get(row, "estimate"));
 			}
 			
-			// for p <= pvalue, create score for this interaction
+			// create a score for info type and risk level
 			String type = interactions.get(row, "infotype");
 			String risk = interactions.get(row, "risklevel");
 			
