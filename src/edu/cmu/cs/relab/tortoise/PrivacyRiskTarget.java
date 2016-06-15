@@ -3,34 +3,33 @@ package edu.cmu.cs.relab.tortoise;
 import java.util.ArrayList;
 
 public class PrivacyRiskTarget {
-	float intercept=(float) 4.69;
-	ArrayList<InformationType> types = new ArrayList<InformationType>();
-	ArrayList<DemographicFactor> factors = new ArrayList<DemographicFactor>();
-	ArrayList<RiskLevel> risklevels = new ArrayList<RiskLevel>();
-	ArrayList<PrivacyHarm> harms = new ArrayList<PrivacyHarm>();
-	ArrayList<Interaction> interactions = new ArrayList<Interaction>();
+	public final static String RISK_L1 = "family";
+	public final static String RISK_L2 = "workplace";
+	public final static String RISK_L3 = "city";
+	public final static String RISK_L4 = "state";
+	public final static String RISK_L5 = "country";
 	
+	private String likelihood = RISK_L1;
+	
+	private ArrayList<String> types = new ArrayList<String>();
+
 	public PrivacyRiskTarget() {
 		return;
 	}
 	
-	public void add(InformationType type) {
+	public String getLikelihood() {
+		return likelihood;
+	}
+	
+	public void setLikelihood(String level) {
+		this.likelihood = level;
+	}
+	
+	public void add(String type) {
 		this.types.add(type);
 	}
 	
-	public void add(DemographicFactor factor) {
-		this.factors.add(factor);
-	}
-	
-	public void add(PrivacyHarm harm) {
-		this.harms.add(harm);
-	}
-	
-	public void add(RiskLevel level) {
-		this.risklevels.add(level);
-	}
-	
-	public void add(Interaction i) {
-		this.interactions.add(i);
+	public String[] getTypes() {
+		return types.toArray(new String[types.size()]);
 	}
 }

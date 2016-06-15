@@ -13,11 +13,8 @@ public class PrivacyRiskScore {
 	/**
 	 * The list of scored information types and demographic factors
 	 */
-	public  PrivacyRiskTarget target;
-	public  InformationType infotype;
-	public  RiskLevel risk;
-	public  PrivacyHarm harm;
-	public  Interaction interaction;
+	public PrivacyRiskTarget target;
+	public String likelihood;
 	public double score;
 
 	
@@ -26,12 +23,9 @@ public class PrivacyRiskScore {
 	 * @param types the scored information types
 	 * @param score the privacy risk score
 	 */
-	public PrivacyRiskScore(PrivacyRiskTarget target, InformationType info, PrivacyHarm harm, RiskLevel risk, Interaction interaction, double score) {
+	public PrivacyRiskScore(PrivacyRiskTarget target, String likelihood, double score) {
 		this.target = target;
-		this.infotype=info;
-		this.risk=risk;
-		this.harm=harm;
-		this.interaction=interaction;
+		this.likelihood = likelihood;
 		this.score = score;
 	}
 	
@@ -42,6 +36,15 @@ public class PrivacyRiskScore {
 	
 	public PrivacyRiskTarget getTarget() {
 		return target;
+	}
+	
+	/**
+	 * Returns the scored information types
+	 * @return the scored information types
+	 */
+	
+	public String getLikelihood() {
+		return likelihood;
 	}
 	
 	/**
