@@ -24,6 +24,7 @@ public class PrivacyRiskEstimateCalculatorTest {
 		DataSource estimates = DataSource.read(new File("data/surveydata.csv"), ",");
 		DataSource interactions = DataSource.read(new File("data/surveydata_interactions.csv"), ",");
 		PrivacyRiskEstimateCalculator calcEst = new PrivacyRiskEstimateCalculator();
+		calcEst.setPValue(Double.MAX_VALUE);
 		calcEst.readData(estimates, interactions);
 		
 		// setup the privacy risk calculator based on mean ratings
