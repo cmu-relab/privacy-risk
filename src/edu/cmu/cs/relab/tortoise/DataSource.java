@@ -69,6 +69,7 @@ public class DataSource {
 	 * is assumed to separate values in each row of the file.
 	 * 
 	 * @param file the file containing the data
+	 * @param delim the delimiter to use when reading the file
 	 * @return the data source acquired from the given file
 	 * @throws IOException thrown, if an error occurs reading the given file
 	 */

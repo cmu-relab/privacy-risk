@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="privacy-risk/dist/privacy-risk-score-1.0.jar"/>
+    <options buildIfNeeded="true" compress="false" descriptionLocation="/privacy-risk/dist/dist.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="/privacy-risk/dist/dist.manifest" manifestVersion="1.0" reuseManifest="false" saveManifest="true" usesManifest="true">
+        <sealing sealJar="true">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <file path="/privacy-risk/data/surveydata_ratings.csv"/>
+        <file path="/privacy-risk/data/surveydata_interactions.csv"/>
+        <file path="/privacy-risk/data/scores.csv"/>
+        <folder path="/privacy-risk/doc"/>
+        <file path="/privacy-risk/README.md"/>
+        <file path="/privacy-risk/data/surveydata.csv"/>
+        <javaElement handleIdentifier="=privacy-risk/src"/>
+    </selectedElements>
+</jardesc>

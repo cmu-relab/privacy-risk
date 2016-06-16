@@ -24,6 +24,7 @@ public abstract class PrivacyRiskCalculator {
 	 * types.
 	 * 
 	 * @param target describes the information types to score
+	 * @return the risk score assigned to the given target
 	 */
 	
 	public abstract PrivacyRiskScore getMaxScore(PrivacyRiskTarget target);

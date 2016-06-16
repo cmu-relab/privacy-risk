@@ -3,6 +3,14 @@ package edu.cmu.cs.relab.tortoise;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+/**
+ * Computes the privacy risk score based on response averages.
+ * 
+ * @author CMU RELAB
+ * @version 1.0
+ *
+ */
+
 public class PrivacyRiskMeanCalculator extends PrivacyRiskCalculator {
 	private TreeMap<String,TreeMap<String,Double>> scores = new TreeMap<String,TreeMap<String,Double>>();
 	

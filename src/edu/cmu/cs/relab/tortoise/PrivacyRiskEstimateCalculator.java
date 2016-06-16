@@ -3,10 +3,11 @@ package edu.cmu.cs.relab.tortoise;
 import java.util.TreeMap;
 
 /**
- * Computes the privacy risk score based on estimates of multiple factors.
- * The current factors include harm type, risk likelihood, and information
- * type. The algorithm adjusts scores for factors that are statistically
- * significant with a default p <= 0.05.
+ * Computes the privacy risk score based on a regression model with multiple 
+ * parameters. The current parameters include privacy harm type, risk 
+ * likelihood, and information type. The algorithm adjusts scores to include
+ * only factors that are statistically significant with a default p value
+ * less than 0.05.
  * 
  * @author CMU RELAB
  * @version 1.0
