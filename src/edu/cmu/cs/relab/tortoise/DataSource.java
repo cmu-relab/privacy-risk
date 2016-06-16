@@ -7,6 +7,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
+/**
+ * Provides a naive reader for CSV files to acquire privacy risk score data.
+ * 
+ * @author CMU RELAB
+ * @version 1.0
+ *
+ */
+
 public class DataSource {
 	private TreeMap<String,Integer> headers = new TreeMap<String,Integer>();
 	private ArrayList<String[]> data = new ArrayList<String[]>();
@@ -17,9 +25,22 @@ public class DataSource {
 		}
 	}
 	
+	/**
+	 * Returns the list of header names for this data source.
+	 * @return the list of header names.
+	 */
+	
 	public String[] getHeaders() {
 		return headers.keySet().toArray(new String[headers.size()]);
 	}
+	
+	/**
+	 * Returns the desired value in the given row and header name.
+	 * 
+	 * @param row the row containing the desired value
+	 * @param header the header name describing the desired value
+	 * @return the desired value
+	 */
 	
 	public String get(int row, String header) {
 		if (row < data.size()) {
@@ -30,9 +51,27 @@ public class DataSource {
 		}
 	}
 	
+	/**
+	 * Returns a data source that assumes a comma delimiter. The delimiter
+	 * is assumed to separate values in each row of the file.
+	 * 
+	 * @param file the file containing the data
+	 * @return the data source acquired from the given file
+	 * @throws IOException thrown, if an error occurs reading the given file
+	 */
+	
 	public static DataSource read(File file) throws IOException {
-		return read(file, "\t");
+		return read(file, ",");
 	}
+	
+	/**
+	 * Returns a data source using the given delimiter. The delimiter
+	 * is assumed to separate values in each row of the file.
+	 * 
+	 * @param file the file containing the data
+	 * @return the data source acquired from the given file
+	 * @throws IOException thrown, if an error occurs reading the given file
+	 */
 	
 	public static DataSource read(File file, String delim) throws IOException {
 		BufferedReader in = new BufferedReader(new FileReader(file));
@@ -56,9 +95,24 @@ public class DataSource {
 		return src;
 	}
 	
+	/**
+	 * Returns the number of rows in this data source.
+	 * @return the numer of rows in this data source.
+	 */
+	
 	public int size() {
 		return data.size();
 	}
+	
+	/**
+	 * Splits a line from the file using the given delimiter. This method
+	 * attempts to split values that may contain the delimiter and that
+	 * may contain quotes, or be quoted.
+	 * 
+	 * @param line the line from the file to split
+	 * @param delim the delimiter that separates values
+	 * @return the separated values
+	 */
 	
 	private static String[] split(String line, String delim) {
 		ArrayList<String> splits = new ArrayList<String>();

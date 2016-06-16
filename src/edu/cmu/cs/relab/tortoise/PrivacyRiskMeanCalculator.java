@@ -6,6 +6,20 @@ import java.util.TreeMap;
 public class PrivacyRiskMeanCalculator extends PrivacyRiskCalculator {
 	private TreeMap<String,TreeMap<String,Double>> scores = new TreeMap<String,TreeMap<String,Double>>();
 	
+	/**
+	 * Reads raw survey data and computes the mean privacy risk scores. The
+	 * survey data appears in a comma seperated values (csv) file with a
+	 * header row, and at least three column headers: risk, infotype and
+	 * willingness-, which is the willingness to share response value
+	 * ordered from 1 to 8 where 1 is extremely willing, and 8 is extremely
+	 * unwilling.
+	 * 
+	 * The risk levels should be written as: "only 1 person in your X", where
+	 * X is equal to one of family, workplace, city, state or country.
+	 * 
+	 * @param source the raw survey data
+	 */
+	
 	public void readData(DataSource source) {
 		TreeMap<String,String> riskMap = new TreeMap<String,String>();
 		riskMap.put("only 1 person in your family", PrivacyRiskTarget.RISK_L1);
@@ -48,7 +62,12 @@ public class PrivacyRiskMeanCalculator extends PrivacyRiskCalculator {
 		}
 	}
 	
-	public PrivacyRiskScore score(PrivacyRiskTarget target) {
+	/**
+	 * Returns the maximum mean willingness to share across all respondents.
+	 * @return the mean privacy risk score
+	 */
+	
+	public PrivacyRiskScore getMaxScore(PrivacyRiskTarget target) {
 		String risk = target.getLikelihood();
 		double maxScore = 0;
 		
@@ -58,6 +77,6 @@ public class PrivacyRiskMeanCalculator extends PrivacyRiskCalculator {
 				maxScore = score;
 			}
 		}
-		return new PrivacyRiskScore(target, risk, maxScore);
+		return new PrivacyRiskScore(target, maxScore);
 	}
 }

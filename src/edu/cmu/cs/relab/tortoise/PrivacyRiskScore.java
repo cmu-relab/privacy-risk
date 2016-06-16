@@ -2,7 +2,9 @@ package edu.cmu.cs.relab.tortoise;
 
 
 /**
- * Describes a privacy risk score for a collection of information types.
+ * Describes a privacy risk score for a collection of information types. The
+ * information types are described in a {@link PrivacyRiskTarget} object,
+ * which includes the risk level used to determine the score.
  * 
  * @author CMU RELAB
  * @version 1.0
@@ -11,40 +13,30 @@ package edu.cmu.cs.relab.tortoise;
 public class PrivacyRiskScore {
 	
 	/**
-	 * The list of scored information types and demographic factors
+	 * The target, including information types and risk level, that was scored.
 	 */
 	public PrivacyRiskTarget target;
-	public String likelihood;
 	public double score;
 
 	
 	/**
-	 * Creates a new mapping between a privacy risk score and scored information types
-	 * @param types the scored information types
+	 * Creates a new mapping between a privacy risk score and scored target
+	 * 
+	 * @param target the scored target
 	 * @param score the privacy risk score
 	 */
-	public PrivacyRiskScore(PrivacyRiskTarget target, String likelihood, double score) {
+	public PrivacyRiskScore(PrivacyRiskTarget target, double score) {
 		this.target = target;
-		this.likelihood = likelihood;
 		this.score = score;
 	}
 	
 	/**
-	 * Returns the scored information types
-	 * @return the scored information types
+	 * Returns the scored target, including information types and risk level
+	 * @return the scored target
 	 */
 	
 	public PrivacyRiskTarget getTarget() {
 		return target;
-	}
-	
-	/**
-	 * Returns the scored information types
-	 * @return the scored information types
-	 */
-	
-	public String getLikelihood() {
-		return likelihood;
 	}
 	
 	/**

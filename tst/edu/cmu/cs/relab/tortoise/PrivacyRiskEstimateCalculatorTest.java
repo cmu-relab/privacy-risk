@@ -9,22 +9,17 @@ import java.io.IOException;
 import java.util.TreeSet;
 
 /**
- * @author jbhatia
- *
+ * @author CMU RELAB
+ * @version 1.0
  */
 public class PrivacyRiskEstimateCalculatorTest {
 
-	/**
-	 * @param args
-	 * @throws IOException 
-	 */
 	public static void main(String[] args) throws IOException {
 
 		// setup the privacy risk calculator based on estimates
 		DataSource estimates = DataSource.read(new File("data/surveydata.csv"), ",");
 		DataSource interactions = DataSource.read(new File("data/surveydata_interactions.csv"), ",");
 		PrivacyRiskEstimateCalculator calcEst = new PrivacyRiskEstimateCalculator();
-		calcEst.setPValue(Double.MAX_VALUE);
 		calcEst.readData(estimates, interactions);
 		
 		// setup the privacy risk calculator based on mean ratings
@@ -53,11 +48,10 @@ public class PrivacyRiskEstimateCalculatorTest {
 		for (String risk : risks) {
 			for (String harm : harms) {
 				for (String type : types) {
-					PrivacyRiskTarget target = new PrivacyRiskTarget();
+					PrivacyRiskTarget target = new PrivacyRiskTarget(risk);
 					target.add(type);
-					target.setLikelihood(risk);
-					PrivacyRiskScore scoreEst = calcEst.score(target);
-					PrivacyRiskScore scoreAvg = calcAvg.score(target);
+					PrivacyRiskScore scoreEst = calcEst.getMaxScore(target);
+					PrivacyRiskScore scoreAvg = calcAvg.getMaxScore(target);
 					out.write(type + "," + risk + "," + harm + "," + scoreEst.score + "," + scoreAvg.score + "\n");
 				}
 			}
