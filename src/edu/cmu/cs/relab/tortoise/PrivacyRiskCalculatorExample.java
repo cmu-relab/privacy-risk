@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.util.TreeSet;
 
 /**
+ * Provides a runtime example of the privacy risk calculator.
+ * 
  * @author CMU RELAB
  * @version 1.0
  */
-public class PrivacyRiskEstimateCalculatorTest {
+public class PrivacyRiskCalculatorExample {
 
 	public static void main(String[] args) throws IOException {
 
@@ -22,12 +24,12 @@ public class PrivacyRiskEstimateCalculatorTest {
 		PrivacyRiskEstimateCalculator calcEst = new PrivacyRiskEstimateCalculator();
 		calcEst.readData(estimates, interactions);
 		
-		// setup the privacy risk calculator based on mean ratings
+		// setup the privacy risk calculator based on response mean
 		DataSource ratings = DataSource.read(new File("data/surveydata_ratings.csv"), ",");
 		PrivacyRiskMeanCalculator calcAvg = new PrivacyRiskMeanCalculator();
 		calcAvg.readData(ratings);
 		
-		// compute an example risk scores for each risk level
+		// compute an example risk score for each risk level
 		String[] risks = { 
 				PrivacyRiskTarget.RISK_L1, 
 				PrivacyRiskTarget.RISK_L2, 
@@ -45,6 +47,7 @@ public class PrivacyRiskEstimateCalculatorTest {
 		FileWriter out = new FileWriter(new File("data/scores.csv"));
 		out.write("InformationType,RiskLevel,Harm,Predicted,Mean\n");
 		
+		// write the risk scores per information type, harm and risk level to the output file
 		for (String risk : risks) {
 			for (String harm : harms) {
 				for (String type : types) {

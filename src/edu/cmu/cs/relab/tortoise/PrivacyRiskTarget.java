@@ -16,12 +16,21 @@ public class PrivacyRiskTarget {
 	public final static String RISK_L4 = "state";
 	public final static String RISK_L5 = "country";
 	
-	private String likelihood = RISK_L1;
+	private String likelihood;
 	
 	private ArrayList<String> types = new ArrayList<String>();
-
+	
+	/**
+	 * Creates a new default privacy risk target with risk level {@link #RISK_L1}.
+	 */
+	
+	public PrivacyRiskTarget() {
+		this(RISK_L1);
+	}
+	
 	/**
 	 * Creates a new default privacy risk target with given risk level.
+	 * @param likelihood the risk level for this target
 	 */
 	
 	public PrivacyRiskTarget(String likelihood) {
