@@ -8,11 +8,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.TreeSet;
 
-import edu.cmu.cs.relab.tortoise.DataSource;
-import edu.cmu.cs.relab.tortoise.PrivacyRiskEstimateCalculator;
-import edu.cmu.cs.relab.tortoise.PrivacyRiskMeanCalculator;
-import edu.cmu.cs.relab.tortoise.PrivacyRiskScore;
-import edu.cmu.cs.relab.tortoise.PrivacyRiskTarget;
+import edu.cmu.cs.relab.tortoise.privacyrisk.DataSource;
+import edu.cmu.cs.relab.tortoise.privacyrisk.PrivacyRiskEstimateCalculator;
+import edu.cmu.cs.relab.tortoise.privacyrisk.PrivacyRiskMeanCalculator;
+import edu.cmu.cs.relab.tortoise.privacyrisk.PrivacyRiskScore;
+import edu.cmu.cs.relab.tortoise.privacyrisk.PrivacyRiskTarget;
 
 /**
  * Provides a runtime example of the privacy risk calculator.

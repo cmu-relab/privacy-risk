@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import edu.cmu.cs.relab.tortoise.privacyrisk.DataSource;
+
 public class DataSourceTest {
 	
 	@Test

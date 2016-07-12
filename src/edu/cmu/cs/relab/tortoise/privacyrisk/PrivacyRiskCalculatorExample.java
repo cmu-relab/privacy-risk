@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.cmu.cs.relab.tortoise;
+package edu.cmu.cs.relab.tortoise.privacyrisk;
 
 import java.io.File;
 import java.io.FileWriter;
