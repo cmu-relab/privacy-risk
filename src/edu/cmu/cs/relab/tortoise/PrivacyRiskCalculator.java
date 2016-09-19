@@ -14,7 +14,7 @@ import java.util.TreeSet;
  */
 
 public abstract class PrivacyRiskCalculator {
-	private TreeSet<String> types = new TreeSet<String>();
+	private TreeSet<String> supportedTypes = new TreeSet<String>();
 	
 	/**
 	 * Returns the maximum score for the given {@link PrivacyRiskTarget} object. 
@@ -37,7 +37,7 @@ public abstract class PrivacyRiskCalculator {
 	 */
 	
 	protected void addSupportedType(String type) {
-		this.types.add(type);
+		this.supportedTypes.add(type);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public abstract class PrivacyRiskCalculator {
 	 */
 	
 	protected void removeSupportedType(String type) {
-		this.types.remove(type);
+		this.supportedTypes.remove(type);
 	}
 	
 	/**
@@ -59,6 +59,16 @@ public abstract class PrivacyRiskCalculator {
 	 */
 	
 	public TreeSet<String> getSupportedTypes() {
-		return new TreeSet<String>(types);
+		return new TreeSet<String>(supportedTypes);
+	}
+	
+	/**
+	 * Returns true if the given type is a supported information type.
+	 * 
+	 * @return true if the given type is supported
+	 */
+	
+	public boolean isSupportedType(String type) {
+		return this.supportedTypes.contains(type);
 	}
 }

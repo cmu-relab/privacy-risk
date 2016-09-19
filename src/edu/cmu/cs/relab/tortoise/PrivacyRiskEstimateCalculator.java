@@ -85,7 +85,7 @@ public class PrivacyRiskEstimateCalculator extends PrivacyRiskCalculator {
 		this.harm = maxHarm;
 		
 		// Read information types and their estimates
-		for(int row = 9; row < 21;row++){
+		for(int row = 9; row < 26;row++){
 			String type = estimates.get(row, "level");
 			double value = Double.parseDouble(estimates.get(row, "estimate"));
 			types.put(type, value);
@@ -100,7 +100,6 @@ public class PrivacyRiskEstimateCalculator extends PrivacyRiskCalculator {
 			if(p > pvalue) {
 				estInteract = 0.0;
 			}
-			
 			else{
 				estInteract = Double.parseDouble(interactions.get(row, "estimate"));
 			}
@@ -110,6 +109,10 @@ public class PrivacyRiskEstimateCalculator extends PrivacyRiskCalculator {
 			String risk = interactions.get(row, "risklevel");
 			
 			// read and lookup relevant estimates
+			if (!isSupportedType(type)) {
+				System.err.println("Warning: Unsupported type '" + type + "' in interactions table.");
+				continue;
+			}
 			double estType = types.get(type);
 			double estRisk = risks.get(risk);
 			
